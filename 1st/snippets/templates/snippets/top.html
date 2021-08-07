@@ -1,0 +1,32 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Django Snippet</title>
+	</head>
+	<body>
+		<h1> WELCOME TO DJANGO SNIPPETS!! </h1>
+		<h2> List of Snippets </h2>
+		{% if snippets %}
+		<table class="table">
+			<thead>
+				<tr>
+					<th> Posted by </th>
+					<th> Posted Date </th>
+					<th> Snippet Title </th>
+				</tr>
+			</thead>
+			<tbody>
+			{% for snippet in snippets %}
+			<tr>
+				<th>{{ snippet.created_by.username }}</th>
+				<th>{{ snippet.created_at }}</th>
+				<th><a href="{% url 'snippet_detail' snippet.id %}">{{ snippet.title }}</a></th>
+			</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+		{% else %}
+		<p> No snippet posted yet </p>
+		{% endif %}
+	</body>
+</html>
